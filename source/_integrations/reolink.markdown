@@ -3,6 +3,7 @@ title: Reolink IP NVR/camera
 description: Instructions on how to integrate Reolink devices (NVR/cameras) into Home Assistant.
 ha_category:
   - Camera
+  - Update
 ha_iot_class: Local Push
 ha_release: 2023.1
 ha_domain: reolink
@@ -12,6 +13,8 @@ ha_config_flow: true
 ha_platforms:
   - binary_sensor
   - camera
+  - number
+  - update
 ha_integration_type: integration
 ha_dhcp: true
 ---
@@ -48,6 +51,20 @@ Depending on the supported features of the camera binary sensors are added for:
 These sensors are polled every 60 seconds and receive ONVIF push events for immediate updates.
 Not all camera models generate ONVIF push events for all event types, some binary sensors might, therefore, only be polled.
 
+## Number entities
+
+Depending on the supported features of the camera number entities are added for:
+
+- Optical zoom control
+- Focus control
+
+## Update entity
+
+An update entity is available that checks for firmware updates every 12 hours.
+This does the same as pressing the "Check for latest version" in the Reolink applications.
+Unfortunately this does not always shows the latest available firmware (also not in the Reolink applications).
+The latest firmware can be downloaded from the [Reolink download center](https://reolink.com/download-center/) and uploaded to the camera/NVR manually.
+
 ## Tested models
 
 The following models have been tested and confirmed to work:
@@ -56,6 +73,7 @@ The following models have been tested and confirmed to work:
 - C2 Pro
 - E1 Zoom
 - E1 Outdoor
+- RLC-410
 - RLC-410W
 - RLC-411
 - RLC-420
@@ -80,6 +98,7 @@ Battery-powered cameras are not yet supported.
 The following models are lacking the HTTP webserver API and can therfore not work with this integration:
 
 - E1 Pro
+- E1
 
 ## Troubleshooting
 
